@@ -1,22 +1,23 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Optional;
 
 public enum Win {
 
-    FIRST(1, 6, false, 2000000000),
-    SECOND(2, 5, true, 30000000),
-    THIRD(3, 5, false, 1500000),
-    FOURTH(4, 4,false,50000),
-    FIFTH(5, 3, false,5000);
+    FIRST(1, 6, false, new BigDecimal(2000000000)),
+    SECOND(2, 5, true, new BigDecimal(30000000)),
+    THIRD(3, 5, false, new BigDecimal(1500000)),
+    FOURTH(4, 4,false, new BigDecimal(50000)),
+    FIFTH(5, 3, false, new BigDecimal(5000));
 
     private int rank;
     private int correctNumberCount;
     private boolean mustEqualBonus;
-    private int prize;
+    private BigDecimal prize;
 
-    Win(int rank, int correctNumberCount, boolean mustEqualBonus, int prize) {
+    Win(int rank, int correctNumberCount, boolean mustEqualBonus, BigDecimal prize) {
         this.rank = rank;
         this.correctNumberCount = correctNumberCount;
         this.mustEqualBonus = mustEqualBonus;
@@ -35,7 +36,7 @@ public enum Win {
         return mustEqualBonus;
     }
 
-    public int getPrize() {
+    public BigDecimal getPrize() {
         return prize;
     }
 
