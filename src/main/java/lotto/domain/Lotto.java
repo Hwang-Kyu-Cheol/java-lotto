@@ -10,6 +10,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6 || hasDuplicatedNumbers(numbers)) {
             throw new IllegalArgumentException();
@@ -26,8 +34,5 @@ public class Lotto {
             used[number] = true;
         }
         return false;
-    }
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 }
