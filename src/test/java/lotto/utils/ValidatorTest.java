@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatorTest {
 
-    @DisplayName("금액이 정수일 경우, IllegalArgumentException이 발생하지 않습니다.")
+    @DisplayName("금액이 정수, 양수, 로또 가격으로 나누어 떨어질 경우, IllegalArgumentException이 발생하지 않습니다.")
     @Test
     void costIsNumber() {
         //given
@@ -24,6 +24,17 @@ class ValidatorTest {
     void costIsNotNumber() {
         //given
         String input = "1000j";
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateCost(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("금액이 음수일 경우, IllegalArgumentException이 발생합니다.")
+    @Test
+    void costIsNegative() {
+        //given
+        String input = "-1000";
 
         //when & then
         assertThatThrownBy(() -> Validator.validateCost(input))

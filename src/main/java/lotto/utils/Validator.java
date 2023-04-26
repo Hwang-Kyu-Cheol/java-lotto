@@ -1,9 +1,15 @@
 package lotto.utils;
 
+import lotto.domain.Lotto;
+
 public class Validator {
 
     public static void validateCost(String input) {
         if (!isInteger(input)) {
+            throw new IllegalArgumentException();
+        }
+        int cost = Integer.parseInt(input);
+        if (!isPositive(cost)) {
             throw new IllegalArgumentException();
         }
     }
@@ -16,5 +22,12 @@ public class Validator {
             return false;
         }
         return true;
+    }
+
+    private static boolean isPositive(int input) {
+        if (input > 0) {
+            return true;
+        }
+        return false;
     }
 }
