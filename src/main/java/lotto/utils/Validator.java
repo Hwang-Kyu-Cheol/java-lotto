@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import lotto.constant.Constant;
 import lotto.domain.Lotto;
 
 public class Validator {
@@ -15,6 +16,13 @@ public class Validator {
         }
         int cost = Integer.parseInt(input);
         if (!isPositive(cost) || !isDividedByLottoPrice(cost)) {
+            throw new IllegalArgumentException();
+        }
+    }
+    
+    public static void validateWinningNumbers(String input) {
+        String[] winningNumbers = input.split(Constant.DELIMITER);
+        if (winningNumbers.length != Lotto.SIZE) {
             throw new IllegalArgumentException();
         }
     }
