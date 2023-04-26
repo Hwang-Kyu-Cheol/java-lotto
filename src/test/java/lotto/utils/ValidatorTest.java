@@ -75,4 +75,26 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateWinningNumbers(input2))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨번호가 숫자가 아닐 경우, IllegalArgumentException을 발생합니다.")
+    @Test
+    void winningNumberIsNotNumber() {
+        //given
+        String input = "1,2,3,4,5,H";
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨번호가 1~45 범위가 아닐 경우, IllegalArgumentException을 발생합니다.")
+    @Test
+    void winningNumberIsNotInRange() {
+        //given
+        String input = "1,2,3,4,5,46";
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

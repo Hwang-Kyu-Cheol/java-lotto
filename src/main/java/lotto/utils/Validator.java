@@ -19,15 +19,39 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
-    
-    public static void validateWinningNumbers(String input) {
+
+    /**
+     * 당첨 번호들을 검증하는 기능
+     * @param input
+     * @throws IllegalArgumentException
+     */
+    public static void validateWinningNumbers(String input) throws IllegalArgumentException {
         String[] winningNumbers = input.split(Constant.DELIMITER);
         if (winningNumbers.length != Lotto.SIZE) {
             throw new IllegalArgumentException();
         }
+        for (String winningNumber : winningNumbers) {
+            validateWinningNumber(winningNumber);
+        }
     }
 
     /** 비즈니스 로직 **/
+    private static void validateWinningNumber(String input) throws IllegalArgumentException {
+        if (!isInteger(input)) {
+            throw new IllegalArgumentException();
+        }
+        int winningNumber = Integer.parseInt(input);
+        if (!isInRange(winningNumber, Lotto.MIN_NUMBER, Lotto.MAX_NUMBER)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean isInRange(int input, int min, int max) {
+        if (min <= input && input <= max) {
+            return true;
+        }
+        return false;
+    }
     private static boolean isInteger(String input) {
         try {
             Integer.parseInt(input);
