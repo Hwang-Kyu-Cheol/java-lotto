@@ -19,10 +19,11 @@ public class User {
 
     public User(BigDecimal cost) {
         this.cost = cost;
+        buyLottos();
     }
 
-    public void buyLottos(int cost) {
-        for (int i = 0; i < cost / 1000; i++) {
+    private void buyLottos() {
+        for (int i = 0; i < cost.divide(BigDecimal.valueOf(1000)).longValue(); i++) {
             Lotto lotto = LottoGenerator.generate();
             lottos.add(lotto);
         }
