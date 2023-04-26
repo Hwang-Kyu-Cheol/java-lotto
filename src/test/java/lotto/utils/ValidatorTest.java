@@ -40,4 +40,15 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateCost(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("금액이 로또 가격으로 나누어 떨어지지 않을 경우, IllegalArgumentException이 발생합니다.")
+    @Test
+    void costIsNotDividedByLottoPrice() {
+        //given
+        String input = "1500";
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateCost(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

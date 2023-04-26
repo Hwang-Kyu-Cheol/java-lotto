@@ -4,12 +4,17 @@ import lotto.domain.Lotto;
 
 public class Validator {
 
-    public static void validateCost(String input) {
+    /**
+     * 로또 구입 금액을 검증하는 기능
+     * @param input
+     * @throws IllegalArgumentException
+     */
+    public static void validateCost(String input) throws IllegalArgumentException {
         if (!isInteger(input)) {
             throw new IllegalArgumentException();
         }
         int cost = Integer.parseInt(input);
-        if (!isPositive(cost)) {
+        if (!isPositive(cost) || !isDividedByLottoPrice(cost)) {
             throw new IllegalArgumentException();
         }
     }
@@ -26,6 +31,13 @@ public class Validator {
 
     private static boolean isPositive(int input) {
         if (input > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isDividedByLottoPrice(int input) {
+        if (input % Lotto.PRICE == 0) {
             return true;
         }
         return false;
