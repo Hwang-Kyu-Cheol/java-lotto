@@ -25,7 +25,13 @@ public class Lotto {
 
     /** 비즈니스 로직 **/
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != SIZE || !isInRange(numbers) || hasDuplicatedNumbers(numbers)) {
+        if (numbers.size() != SIZE) {
+            throw new IllegalArgumentException();
+        }
+        if (!isAllInRange(numbers)) {
+            throw new IllegalArgumentException();
+        }
+        if (hasDuplicatedNumbers(numbers)) {
             throw new IllegalArgumentException();
         }
     }
@@ -34,13 +40,20 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    private boolean isInRange(List<Integer> numbers) {
+    private boolean isAllInRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            if (!isInRange(number)) {
                 return false;
             }
         }
         return true;
+    }
+
+    private boolean isInRange(int number) {
+        if (MIN_NUMBER <= number && number <= MAX_NUMBER) {
+            return true;
+        }
+        return false;
     }
 
     private boolean hasDuplicatedNumbers(List<Integer> numbers) {
