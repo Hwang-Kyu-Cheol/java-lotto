@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,13 +15,19 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sort(numbers);
         this.numbers = numbers;
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
+    public int get(int index) {
+        return numbers.get(index);
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     /** 비즈니스 로직 **/
@@ -34,10 +41,6 @@ public class Lotto {
         if (hasDuplicatedNumbers(numbers)) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private void sort(List<Integer> numbers) {
-        Collections.sort(numbers);
     }
 
     private boolean isAllInRange(List<Integer> numbers) {

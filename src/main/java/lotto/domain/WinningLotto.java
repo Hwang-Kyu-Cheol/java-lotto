@@ -13,6 +13,15 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public boolean contains(int number) {
+        return winningNumbers.contains(number);
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    /** 비즈니스 로직 **/
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.size() != Lotto.SIZE) {
             throw new IllegalArgumentException();

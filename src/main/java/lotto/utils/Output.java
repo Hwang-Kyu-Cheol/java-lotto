@@ -3,6 +3,9 @@ package lotto.utils;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Output {
 
     /**
@@ -12,7 +15,9 @@ public class Output {
     public static void showLottoTicket(LottoTicket lottoTicket) {
         System.out.println(lottoTicket.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottoTicket.getLottos()) {
-            System.out.println(lotto);
+            List<Integer> numbers = lotto.getNumbers();
+            Collections.sort(numbers);
+            System.out.println(numbers);
         }
     }
 }
