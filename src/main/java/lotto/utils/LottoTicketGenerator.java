@@ -10,10 +10,11 @@ public class LottoTicketGenerator {
 
     /**
      * 여러개 로또가 있는 로또 티켓을 생성하는 기능
-     * @param count
+     * @param cost
      * @return LottoTicket
      */
-    public static LottoTicket generate(int count) {
+    public static LottoTicket generate(int cost) {
+        int count = cost / Lotto.PRICE;
         List<Lotto> lottos = new ArrayList<>();
         while (count-- > 0) {
             lottos.add(LottoGenerator.generate());
