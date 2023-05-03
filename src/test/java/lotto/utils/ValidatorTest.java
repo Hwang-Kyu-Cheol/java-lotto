@@ -97,4 +97,26 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 숫자가 아닐 경우, IllegalArgumentException이 발생합니다.")
+    @Test
+    void bonusNumberIsNotNumber() {
+        //given
+        String input = "A";
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 1~45 범위가 아닐 경우, IllegalArgumentException이 발생합니다.")
+    @Test
+    void bonusNumberIsNotInRange() {
+        //given
+        String input = "0";
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -29,4 +29,14 @@ public class Resolver {
                 .map(winningNumber -> Integer.parseInt(winningNumber))
                 .collect(Collectors.toList());
     }
+
+    /**
+     * 보너스 번호(String)을 int로 변환하는 기능
+     * @param input
+     * @return int
+     */
+    public static int resolveBonusNumber(String input) {
+        Validator.validateBonusNumber(input);
+        return Integer.parseInt(input);
+    }
 }

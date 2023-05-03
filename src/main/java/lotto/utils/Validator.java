@@ -32,12 +32,21 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }
         for (String winningNumber : winningNumbers) {
-            validateWinningNumber(winningNumber);
+            validateLottoNumber(winningNumber);
         }
     }
 
+    /**
+     * 보너스 번호를 검증하는 기능
+     * @param input
+     * @throws IllegalArgumentException
+     */
+    public static void validateBonusNumber(String input) throws IllegalArgumentException {
+        validateLottoNumber(input);
+    }
+
     /** 비즈니스 로직 **/
-    private static void validateWinningNumber(String input) throws IllegalArgumentException {
+    private static void validateLottoNumber(String input) throws IllegalArgumentException {
         if (!isInteger(input)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }

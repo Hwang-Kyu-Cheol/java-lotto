@@ -23,4 +23,13 @@ public class Input {
         String input = Console.readLine();
         return Resolver.resolveWinningNumbers(input);
     }
+
+    /**
+     * 보너스 번호를 입력받고, 번호를 int로 변환하는 기능
+     * @return int
+     */
+    public static int getBonusNumber() {
+        String input = Console.readLine();
+        return Resolver.resolveBonusNumber(input);
+    }
 }
