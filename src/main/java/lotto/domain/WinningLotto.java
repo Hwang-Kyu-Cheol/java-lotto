@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.ErrorMessage;
+
 import java.util.List;
 
 public class WinningLotto {
@@ -24,13 +26,16 @@ public class WinningLotto {
     /** 비즈니스 로직 **/
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.size() != Lotto.SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }
-        if (!isAllInRange(winningNumbers) || !isInRange(bonusNumber)) {
-            throw new IllegalArgumentException();
+        if (!isAllInRange(winningNumbers)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
+        }
+        if (!isInRange(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER);
         }
         if (hasDuplicatedNumbers(winningNumbers, bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBERS);
         }
     }
 

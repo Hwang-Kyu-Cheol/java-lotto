@@ -1,7 +1,8 @@
 package lotto.domain;
 
+import lotto.constant.ErrorMessage;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -33,13 +34,13 @@ public class Lotto {
     /** 비즈니스 로직 **/
     private void validate(List<Integer> numbers) {
         if (numbers.size() != SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }
         if (!isAllInRange(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }
         if (hasDuplicatedNumbers(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBERS);
         }
     }
 

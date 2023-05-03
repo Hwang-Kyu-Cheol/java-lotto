@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import lotto.constant.Constant;
+import lotto.constant.ErrorMessage;
 import lotto.domain.Lotto;
 
 public class Validator {
@@ -12,11 +13,11 @@ public class Validator {
      */
     public static void validateCost(String input) throws IllegalArgumentException {
         if (!isInteger(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_PRICE);
         }
         int cost = Integer.parseInt(input);
         if (!isPositive(cost) || !isDividedByLottoPrice(cost)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_PRICE);
         }
     }
 
@@ -28,7 +29,7 @@ public class Validator {
     public static void validateWinningNumbers(String input) throws IllegalArgumentException {
         String[] winningNumbers = input.split(Constant.DELIMITER);
         if (winningNumbers.length != Lotto.SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }
         for (String winningNumber : winningNumbers) {
             validateWinningNumber(winningNumber);
@@ -38,11 +39,11 @@ public class Validator {
     /** 비즈니스 로직 **/
     private static void validateWinningNumber(String input) throws IllegalArgumentException {
         if (!isInteger(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }
         int winningNumber = Integer.parseInt(input);
         if (!isInRange(winningNumber, Lotto.MIN_NUMBER, Lotto.MAX_NUMBER)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }
     }
 
