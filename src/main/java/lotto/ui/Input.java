@@ -1,6 +1,7 @@
-package lotto.utils;
+package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.Resolver;
 
 import java.util.List;
 

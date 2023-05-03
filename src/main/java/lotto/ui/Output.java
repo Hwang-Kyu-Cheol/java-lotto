@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.ui;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
@@ -23,6 +23,10 @@ public class Output {
         System.out.println();
     }
 
+    /**
+     * 로또 결과 통계를 출력하는 기능
+     * @param winningResult
+     */
     public static void showLottoAnalysis(WinningResult winningResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -32,5 +36,17 @@ public class Output {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningResult.getRank(2) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + winningResult.getRank(1));
         System.out.println("총 수익률은 " + String.format("%.1f", winningResult.getProfitRate()) + "%입니다.");
+    }
+
+    public static void enterLottoPrice() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    public static void enterWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public static void enterBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
     }
 }
