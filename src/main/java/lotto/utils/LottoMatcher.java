@@ -1,7 +1,6 @@
 package lotto.utils;
 
 import lotto.constant.Winning;
-import lotto.constant.WinningCriteria;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 
@@ -13,18 +12,7 @@ public class LottoMatcher {
     public static Optional<Winning> findWinning(WinningLotto winningLotto, Lotto lotto) {
         int equalWinningNumbersCount = countWinningNumbers(winningLotto, lotto);
         boolean equalBonusNumber = hasBonusNumber(winningLotto, lotto);
-        return Arrays.stream(WinningCriteria.values())
-                .filter((winningCriteria -> {
-                    if (winningCriteria.getEqualWinningNumbersCount() == equalWinningNumbersCount) {
-                        if (winningCriteria.isMustEqualBonusNumber() && !equalBonusNumber) {
-                            return false;
-                        }
-                        return true;
-                    }
-                    return false;
-                }))
-                .map(winningCriteria -> winningCriteria.getWinning())
-                .findAny();
+        return Winning.findWinning(equalWinningNumbersCount, equalBonusNumber);
     }
 
     /** 비즈니스 로직 **/
