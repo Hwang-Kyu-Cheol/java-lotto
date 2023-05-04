@@ -6,17 +6,19 @@ import java.util.List;
 
 public class WinningLotto {
 
-    private final List<Integer> winningNumbers;
+    private static final int NUMBERS_SIZE = 6;
+
+    private final List<Integer> numbers;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        validate(winningNumbers, bonusNumber);
-        this.winningNumbers = winningNumbers;
+    public WinningLotto(List<Integer> numbers, int bonusNumber) {
+        validate(numbers, bonusNumber);
+        this.numbers = numbers;
         this.bonusNumber = bonusNumber;
     }
 
     public boolean contains(int number) {
-        return winningNumbers.contains(number);
+        return numbers.contains(number);
     }
 
     public int getBonusNumber() {
@@ -25,7 +27,7 @@ public class WinningLotto {
 
     /** 비즈니스 로직 **/
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.size() != Lotto.SIZE) {
+        if (winningNumbers.size() != NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }
         if (!isAllInRange(winningNumbers)) {

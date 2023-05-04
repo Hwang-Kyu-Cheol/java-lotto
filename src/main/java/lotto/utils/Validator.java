@@ -29,7 +29,7 @@ public class Validator {
      */
     public static void validateWinningNumbers(String input) throws IllegalArgumentException {
         String[] winningNumbers = input.split(DELIMITER);
-        if (winningNumbers.length != Lotto.SIZE) {
+        if (winningNumbers.length != Lotto.NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }
         for (String winningNumber : winningNumbers) {

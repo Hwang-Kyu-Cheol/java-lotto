@@ -18,7 +18,7 @@ public class LottoMatcher {
     /** 비즈니스 로직 **/
     private static int countWinningNumbers(WinningLotto winningLotto, Lotto lotto) {
         int winningNumbersCount = 0;
-        for (int i = 0; i < Lotto.SIZE; i++) {
+        for (int i = 0; i < Lotto.NUMBERS_SIZE; i++) {
             if (winningLotto.contains(lotto.get(i))) {
                 winningNumbersCount++;
             }

@@ -12,7 +12,7 @@ public class LottoGenerator {
      * @return Lotto
      */
     public static Lotto generate() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.SIZE);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.NUMBERS_SIZE);
         return new Lotto(numbers);
     }
 }

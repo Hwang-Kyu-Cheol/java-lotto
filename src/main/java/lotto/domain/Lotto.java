@@ -3,12 +3,14 @@ package lotto.domain;
 import lotto.constant.ErrorMessage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
     public static final int PRICE = 1000;
-    public static final int SIZE = 6;
+    public static final int NUMBERS_SIZE = 6;
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 45;
 
@@ -33,40 +35,35 @@ public class Lotto {
 
     /** 비즈니스 로직 **/
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
-        }
-        if (!isAllInRange(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
-        }
-        if (hasDuplicatedNumbers(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBERS);
+        validateSize(numbers);
+        validateRange(numbers);
+        validateDuplicatedNumbers(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != NUMBERS_SIZE) {
+            throw new IllegalArgumentException("로또 번호 갯수가 유효하지 않습니다.");
         }
     }
 
-    private boolean isAllInRange(List<Integer> numbers) {
+    private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (!isInRange(number)) {
-                return false;
+                throw new IllegalArgumentException("로또 번호 범위가 유효하지 않습니다.");
             }
         }
-        return true;
+    }
+
+    private void validateDuplicatedNumbers(List<Integer> numbers) {
+        Set<Integer> nonDuplicatedNumbers = new HashSet<>(numbers);
+        if (nonDuplicatedNumbers.size() != NUMBERS_SIZE) {
+            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+        }
     }
 
     private boolean isInRange(int number) {
         if (MIN_NUMBER <= number && number <= MAX_NUMBER) {
             return true;
-        }
-        return false;
-    }
-
-    private boolean hasDuplicatedNumbers(List<Integer> numbers) {
-        boolean[] used = new boolean[46];
-        for (int number : numbers) {
-            if (used[number]) {
-                return true;
-            }
-            used[number] = true;
         }
         return false;
     }
