@@ -1,10 +1,11 @@
 package lotto.utils;
 
-import lotto.constant.Constant;
 import lotto.constant.ErrorMessage;
 import lotto.domain.Lotto;
 
 public class Validator {
+
+    private static final String DELIMITER = ",";
 
     /**
      * 로또 구입 금액을 검증하는 기능
@@ -27,7 +28,7 @@ public class Validator {
      * @throws IllegalArgumentException
      */
     public static void validateWinningNumbers(String input) throws IllegalArgumentException {
-        String[] winningNumbers = input.split(Constant.DELIMITER);
+        String[] winningNumbers = input.split(DELIMITER);
         if (winningNumbers.length != Lotto.SIZE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS);
         }

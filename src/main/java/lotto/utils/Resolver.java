@@ -1,12 +1,12 @@
 package lotto.utils;
 
-import lotto.constant.Constant;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Resolver {
+
+    private static final String DELIMITER = ",";
 
     /**
      * 로또 구입 금액(String)을 int로 변환하는 기능
@@ -25,7 +25,7 @@ public class Resolver {
      */
     public static List<Integer> resolveWinningNumbers(String input) {
         Validator.validateWinningNumbers(input);
-        return Arrays.stream(input.split(Constant.DELIMITER))
+        return Arrays.stream(input.split(DELIMITER))
                 .map(winningNumber -> Integer.parseInt(winningNumber))
                 .collect(Collectors.toList());
     }
