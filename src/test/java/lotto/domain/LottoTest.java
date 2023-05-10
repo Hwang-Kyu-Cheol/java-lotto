@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.utils.LottoGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,5 +31,17 @@ class LottoTest {
     void createLottoByNotInRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void test() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.NUMBERS_SIZE);
+        Lotto lotto = new Lotto(numbers);
+        numbers.add(0);
+        List<Integer> numbers1 = lotto.getNumbers();
+        numbers1.add(1);
+        System.out.println("numbers1 = " + numbers1);
+        List<Integer> numbers2 = lotto.getNumbers();
+        System.out.println("numbers2 = " + numbers2);
     }
 }

@@ -2,10 +2,7 @@ package lotto.domain;
 
 import lotto.constant.ErrorMessage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
 
@@ -16,9 +13,10 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = List.copyOf(numbers);
+
     }
 
     public int get(int index) {
@@ -26,7 +24,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
+        return numbers;
     }
 
     public boolean contains(int number) {

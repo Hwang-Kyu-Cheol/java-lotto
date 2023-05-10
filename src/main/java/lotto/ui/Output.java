@@ -1,13 +1,19 @@
 package lotto.ui;
 
+import lotto.constant.Winning;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningResult;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class Output {
+
+    private static DecimalFormat df = new DecimalFormat("###,###.#");
 
     /**
      * 발행한 로또 티켓을 화면에 출력하는 기능
@@ -17,7 +23,7 @@ public class Output {
         System.out.println();
         System.out.println(lottoTicket.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottoTicket.getLottos()) {
-            List<Integer> numbers = lotto.getNumbers();
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
             Collections.sort(numbers);
             System.out.println(numbers);
         }
@@ -31,12 +37,19 @@ public class Output {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + winningResult.getRank(5) + "개");
-        System.out.println("4개 일치 (50,000원) - " + winningResult.getRank(4) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + winningResult.getRank(3) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningResult.getRank(2) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + winningResult.getRank(1) + "개");
-        System.out.println("총 수익률은 " + String.format("%.1f", winningResult.getProfitRate()) + "%입니다.");
+        Winning[] winnings = Winning.values();
+        Arrays.sort(winnings, (w1, w2) -> w1.getPrize() - w2.getPrize());
+        for (Winning winning : winnings) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(winning.getEqualWinningNumbersCount() + "개 일치");
+            if (winning.isMustEqualBonusNumber()) {
+                sb.append(", 보너스 볼 일치");
+            }
+            sb.append(" (" + df.format(winning.getPrize()) + "원) - ");
+            sb.append(winningResult.getRank(winning.getRank()) + "개");
+            System.out.println(sb);
+        }
+        System.out.println("총 수익률은 " + df.format(winningResult.getProfitRate()) + "%입니다.");
     }
 
     public static void enterLottoPrice() {

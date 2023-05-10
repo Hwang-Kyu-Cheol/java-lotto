@@ -42,4 +42,12 @@ public enum Winning {
     public int getPrize() {
         return prize;
     }
+
+    public int getEqualWinningNumbersCount() {
+        return equalWinningNumbersCount;
+    }
+
+    public boolean isMustEqualBonusNumber() {
+        return mustEqualBonusNumber;
+    }
 }
